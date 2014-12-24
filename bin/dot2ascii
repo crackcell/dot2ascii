@@ -1,0 +1,5 @@
+#!/bin/bash
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+LIB_PATH="$PERL5LIB:$DIR/../lib"
+PERL5LIB="$LIB_PATH" perl $DIR/dot2ascii.pl $1

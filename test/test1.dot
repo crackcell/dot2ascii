@@ -1,0 +1,6 @@
+digraph TestGraph1 {
+    rankdir=LR
+    "a" -> "b";
+    "c" -> "b";
+    "b" -> "d";
+}
