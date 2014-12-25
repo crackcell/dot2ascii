@@ -13,25 +13,31 @@ use Graph::Easy::Parser::Graphviz;
 
 #------------------ function ------------------
 
-sub usage {
+sub usage() {
     print("dot2ascii.pl\n");
-    print("Usage: [-h] dot_file\n");
-    print("  -h                   : show help message\n");
+    print("Usage: -h -f -i\n");
+    print("  -h                      : show help message\n");
+    print("  -f dot_file             : specify dot file\n");
+    print("  -i indent               : specify indent\n");
 }
 
 #------------------- main -------------------
 
 my %opts;
 
-#$opts{"f"} = "";
-getopts("h", \%opts);
+$opts{"i"} = "";
+$opts{"f"} = "";
+getopts("hi:f:", \%opts);
 
-if (exists $opts{"h"} || scalar @ARGV != 1) {
+if (exists $opts{"h"} || length($opts{"f"}) == 0) {
     usage();
     exit 0;
 }
 
 my $parser = Graph::Easy::Parser::Graphviz->new();
-my $graph = $parser->from_file($ARGV[0]);
+my $graph = $parser->from_file($opts{"f"});
 
-print $graph->as_ascii();
+my @lines = split(/\n/, $graph->as_ascii());
+foreach my $line (@lines) {
+    print $opts{"i"}, $line, "\n";
+}
