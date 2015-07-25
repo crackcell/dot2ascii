@@ -9,7 +9,7 @@ Compile graphviz's dot source file to ASCII graphs.
 
 ## Example
 
-    ./bin/dot2ascii test/test1.dot 
+    ./bin/dot2ascii -f test/test1.dot 
 
 it will output:
 
